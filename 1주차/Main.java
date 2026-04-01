@@ -9,13 +9,21 @@ public class Main {
 
         // 1. 아기사자 수 입력
         while (true) {
-            System.out.print("🦁 저장할 아기사자 수를 5 이상 입력해주세요.");
-            count = sc.nextInt();
+            System.out.print("🦁 저장할 아기사자 수를 5 이상 입력해주세요.\n");
 
-            if (count >= 5) {
-                break;
+            //보너스 과제 숫자 확인
+            if (sc.hasNextInt()) {
+                count = sc.nextInt();
+
+                if (count >= 5) {
+                    break;
+                } else {
+                    System.out.println("❗ [오류] 5 이상 입력해주세요.");
+                }
+
             } else {
-                System.out.println("❗ [오류] 5 이상 입력해주세요.");
+                System.out.println("❗ [오류] 숫자를 입력해주세요.");
+                sc.next(); // 잘못된 입력 제거
             }
         }
 
@@ -31,7 +39,6 @@ public class Main {
 
         // 3. 최종 아기사자 명단 출력
         System.out.println("\n📑 아기사자 명단을 최종적으로 출력합니다.");
-        //System.out.println("총 인원: " + count + "명");
 
         for (int i = 0; i < count; i++) {
             System.out.println("🦁 " + (i + 1) + ". " + lions[i]);
