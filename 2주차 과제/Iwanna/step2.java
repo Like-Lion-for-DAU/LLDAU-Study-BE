@@ -22,6 +22,7 @@ public class step2 {
 
         if (lion.Validation() == false) {
             System.out.println("❌ 잘못된 아기사자 정보입니다.");
+            sc.close();
             return;
         }
 
@@ -32,6 +33,8 @@ public class step2 {
         System.out.print("👤 이름 : "+lion.name);
         System.out.print("| 🎓 전공 : "+lion.major);
         //System.out.print("| 📌 기수 : "+lion.number);
+
+        sc.close();
 
 
     }

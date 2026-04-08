@@ -17,16 +17,19 @@ public class step1 {
 
         if (name.isEmpty()) {
             System.out.println("❌ 이름은 비어 있을 수 없습니다.");
+            sc.close();
             return;
         }
 
         if (major.isEmpty()) {
             System.out.println("❌ 전공은 비어 있을 수 없습니다.");
+            sc.close();
             return;
         }
 
         if (number<1) {
             System.out.println("❌ 기수는 1미만일 수 없습니다.");
+            sc.close();
             return;
         }
 
@@ -41,6 +44,8 @@ public class step1 {
         System.out.print("👤 이름 : "+lion.name);
         System.out.print("| 🎓 전공 : "+lion.major);
         //System.out.print("| 📌 기수 : "+lion.number);
+
+        sc.close();
 
     }
 }
