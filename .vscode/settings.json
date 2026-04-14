@@ -1,0 +1,6 @@
+{
+  "java.project.sourcePaths": [
+    "3week"
+],
+"java.debug.settings.onBuildFailureProceed": true
+}
