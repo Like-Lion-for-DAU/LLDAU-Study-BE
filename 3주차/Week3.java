@@ -51,7 +51,7 @@ public class Week3 {
             return new ManagerAssignmentPolicy();
         }
 
-        // ✅ 버그 수정: number → position
+        
         public void getInfo() {
             System.out.println("이름: " + name + ", 전공: " + major + ", 기수: " + generation + ", 파트: " + part + ", 직책: " + position);
         }
