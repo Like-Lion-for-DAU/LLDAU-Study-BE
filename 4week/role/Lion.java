@@ -1,5 +1,6 @@
 package role;
 
+import java.util.List;
 import java.util.Scanner;
 
 import policy.HomeworkPolicy;
@@ -13,10 +14,13 @@ public class Lion extends Role {
         this.number = number;
     }
 
-    public static Lion scanLion(Scanner sc) {
+    public static Lion scan(Scanner sc, List<Role> members) {
         System.out.println("아기사자다.");
+
         System.out.println("이름. ");
         String name = sc.nextLine();
+        assertNameUnique(members, name);
+
         System.out.println("전공. ");
         String major = sc.nextLine();
         System.out.println("기수. ");
@@ -28,24 +32,26 @@ public class Lion extends Role {
         return new Lion(name, major, year, part, number);
     }
 
+    public static void register(List<Role> members, Lion lion) {
+        members.add(lion);
+    }
+
+
+
     @Override
     public HomeworkPolicy getHomeworkPolicy() {
         return new LionHomeworkPolicy();
     }
 
     @Override
-    public String describeSelf() {
-        String result = "";
-
-        result = "나는 아기사자다.\n"
+    public void describeSelf() {
+        System.out.println("나는 아기사자다.\n"
                 + "이름: " + super.getName() + "\n"
                 + "전공: " + super.getMajor() + "\n"
                 + "기수: " + super.getYear() + "\n"
                 + "파트: " + super.getPart() + "\n"
                 + "학번: " + number + "\n"
                 + "과제 제출: " + (isSubmittable() ? "가능" : "불가능") + "\n"
-                + "이상.";
-
-        return result;
+                + "이상.");
     }
 }
