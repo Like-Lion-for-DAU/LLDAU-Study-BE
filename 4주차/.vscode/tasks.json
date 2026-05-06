@@ -1,0 +1,25 @@
+{
+    "version": "2.0.0",
+    "tasks": [
+        {
+            "label": "컴파일 및 실행",
+            "type": "shell",
+            "command": "cmd",
+            "args": [
+                "/c",
+                "cd ${workspaceFolder} && javac package1/Main.java role/*.java policy/*.java && java package1.Main"
+            ],
+            "group": {
+                "kind": "build",
+                "isDefault": true
+            },
+            "presentation": {
+                "echo": true,
+                "reveal": "always",
+                "focus": false,
+                "panel": "shared"
+            },
+            "problemMatcher": []
+        }
+    ]
+}
