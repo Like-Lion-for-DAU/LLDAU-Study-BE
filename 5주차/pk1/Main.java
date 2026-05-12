@@ -27,7 +27,6 @@ public class Main {
         }
     }
 
-    // 멤버 등록 입력 UI
     private static void registerMember() {
         System.out.print("역할 선택(1: 아기사자, 2: 운영진) : ");
         int j = sc.nextInt();

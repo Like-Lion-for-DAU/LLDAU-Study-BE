@@ -13,7 +13,7 @@ public class MemberService {
         ArrayList<Role> list = repository.findAll();
         for(Role r : list){
             if (r.name.equals(role.name)) {
-                return false; // 중복이면 가입 실패
+                return false;
             }
         }
         repository.save(role);
