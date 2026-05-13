@@ -4,9 +4,7 @@ import role.Lion;
 import role.Role;
 import role.Staff;
 
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Scanner;
+import java.util.*;
 
 public class Main {
     private static final Scanner sc = new Scanner(System.in);
