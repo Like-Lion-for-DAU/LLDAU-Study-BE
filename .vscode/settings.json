@@ -1,8 +1,6 @@
 {
   "java.project.sourcePaths": [
-    "3주차",
-    "2주차",
-    "4주차"
+    "5주차"
   ],
-"java.debug.settings.onBuildFailureProceed": true
+"java.debug.settings.onBuildFailureProceed": false
 }

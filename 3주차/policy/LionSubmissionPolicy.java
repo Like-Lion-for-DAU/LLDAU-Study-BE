@@ -1,6 +1,6 @@
 package policy;
 
-public class LionSubmitPolicy implements SubmitPolicy {
+public class LionSubmissionPolicy implements SubmissionPolicy {
     @Override
     public boolean canSubmit() {
         return true;

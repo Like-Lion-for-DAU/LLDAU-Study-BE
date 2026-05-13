@@ -1,14 +1,14 @@
 package role;
 
-import policy.SubmitPolicy;
+import policy.SubmissionPolicy;
 
-public abstract class Person {
+public abstract class Role {
     private String name;
     private String major;
     private int generation;
     private String part;
 
-    public Person(String name, String major, int generation, String part) {
+    public Role(String name, String major, int generation, String part) {
         this.name = name;
         this.major = major;
         this.generation = generation;
@@ -32,10 +32,10 @@ public abstract class Person {
     }
 
     public boolean canSubmitAssignment() {
-        return getSubmitPolicy().canSubmit();
+        return getSubmissionPolicy().canSubmit();
     }
 
-    public abstract SubmitPolicy getSubmitPolicy();
+    public abstract SubmissionPolicy getSubmissionPolicy();
 
     public abstract String getRoleName();
 

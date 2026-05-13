@@ -1,5 +1,5 @@
 import java.util.Scanner;
-import role.Person;
+import role.Role;
 import role.Lion;
 import role.Staff;
 
@@ -45,8 +45,8 @@ public class Main {
 
         System.out.println();
 
-        Person lion = new Lion(lionName, lionMajor, lionGeneration, lionPart, lionStudentId);
-        Person staff = new Staff(staffName, staffMajor, staffGeneration, staffPart, staffPosition);
+        Role lion = new Lion(lionName, lionMajor, lionGeneration, lionPart, lionStudentId);
+        Role staff = new Staff(staffName, staffMajor, staffGeneration, staffPart, staffPosition);
 
         System.out.println("======== 결과 출력 ========");
         System.out.println();
