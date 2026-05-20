@@ -1,0 +1,76 @@
+@startuml
+class com.example.demo.config.AppConfig {
++ MemberRepository memberRepository()
++ MemberService memberService()
+}
+
+interface com.example.demo.MemberRepository {
+~ void save(Member)
+~ Member findByName(String)
+~ List<Member> findAll()
+}
+
+class com.example.demo.policy.LionAssignmentPolicy {
++ boolean canSubmit()
+}
+
+class com.example.demo.DemoApplication {
++ {static} void main(String[])
+}
+
+interface com.example.demo.policy.AssignmentPolicy {
+~ boolean canSubmit()
+}
+
+class com.example.demo.MemoryMemberRepository {
+- {static} Map<String,Member> store
++ void save(Member)
++ Member findByName(String)
++ List<Member> findAll()
+}
+
+
+abstract class com.example.demo.role.Role {
++ {abstract}String getRoleName()
+}
+
+class com.example.demo.role.Lion {
++ String getRoleName()
+}
+
+class com.example.demo.role.Staff {
++ String getRoleName()
+}
+
+class com.example.demo.MemberService {
+- MemberRepository memberRepository
++ void join(Member)
++ Member findMember(String)
+}
+
+
+class com.example.demo.Member {
+- String name
+- String major
+- int term
+- String part
+- String studentId
+- Role role
+- AssignmentPolicy policy
++ String getName()
++ Role getRole()
+}
+
+
+class com.example.demo.policy.StaffAssignmentPolicy {
++ boolean canSubmit()
+}
+
+
+
+com.example.demo.policy.AssignmentPolicy <|.. com.example.demo.policy.LionAssignmentPolicy
+com.example.demo.MemberRepository <|.. com.example.demo.MemoryMemberRepository
+com.example.demo.role.Role <|-- com.example.demo.role.Lion
+com.example.demo.role.Role <|-- com.example.demo.role.Staff
+com.example.demo.policy.AssignmentPolicy <|.. com.example.demo.policy.StaffAssignmentPolicy
+@enduml
