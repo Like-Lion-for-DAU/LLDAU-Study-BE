@@ -4,7 +4,9 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="1455af27-6e0f-4b67-8b60-dd3dc8089a10" name="변경" comment="" />
+    <list default="true" id="1455af27-6e0f-4b67-8b60-dd3dc8089a10" name="변경" comment="">
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -56,6 +58,19 @@
       <recent name="$PROJECT_DIR$" />
     </key>
   </component>
+  <component name="RunManager">
+    <configuration default="true" type="JetRunConfigurationType">
+      <module name="LLDAU-Study-BE" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration default="true" type="KotlinStandaloneScriptRunConfigurationType">
+      <module name="LLDAU-Study-BE" />
+      <option name="filePath" />
+      <method v="2" />
+    </configuration>
+  </component>
   <component name="SharedIndexes">
     <attachedChunks>
       <set>
@@ -76,6 +91,8 @@
       <workItem from="1775525086528" duration="2192000" />
       <workItem from="1777355565146" duration="267000" />
       <workItem from="1778058196314" duration="2195000" />
+      <workItem from="1778574018890" duration="993000" />
+      <workItem from="1779196181511" duration="49000" />
     </task>
     <servers />
   </component>
