@@ -23,9 +23,9 @@ public class MemberService {
         this.repository = repository;
     }
 
-    // ===================== 생성 =====================
+    // 생성
 
-    /** Lion 생성. 이름이 중복이면 null 반환. */
+
     public Lion createLion(LionCreateRequest request) {
         if (repository.existsByName(request.getName())) {
             return null;
@@ -41,7 +41,7 @@ public class MemberService {
         return lion;
     }
 
-    /** Staff 생성. 이름이 중복이면 null 반환. */
+
     public Staff createStaff(StaffCreateRequest request) {
         if (repository.existsByName(request.getName())) {
             return null;
@@ -57,7 +57,7 @@ public class MemberService {
         return staff;
     }
 
-    // ===================== 조회 =====================
+
 
     public Role findByName(String name) {
         return repository.findByName(name);
@@ -67,9 +67,7 @@ public class MemberService {
         return repository.findAll();
     }
 
-    // ===================== 수정 =====================
 
-    /** Lion 수정. 멤버가 없거나 Lion이 아니면 null 반환. */
     public Lion updateLion(String name, LionUpdateRequest request) {
         Role found = repository.findByName(name);
         if (!(found instanceof Lion lion)) {
@@ -84,7 +82,7 @@ public class MemberService {
         return lion;
     }
 
-    /** Staff 수정. 멤버가 없거나 Staff가 아니면 null 반환. */
+
     public Staff updateStaff(String name, StaffUpdateRequest request) {
         Role found = repository.findByName(name);
         if (!(found instanceof Staff staff)) {
@@ -99,9 +97,7 @@ public class MemberService {
         return staff;
     }
 
-    // ===================== 삭제 =====================
 
-    /** 멤버 삭제. 성공하면 true, 없으면 false. */
     public boolean deleteMember(String name) {
         return repository.deleteByName(name);
     }
