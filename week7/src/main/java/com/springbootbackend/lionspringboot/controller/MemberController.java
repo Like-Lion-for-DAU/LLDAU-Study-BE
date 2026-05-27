@@ -43,7 +43,7 @@ public class MemberController {
     //응답 본문 (Response Body): 클라이언트가 실제로 필요로 하는 데이터 (주로 JSON, XML, 문자열 등).
 
 
-    // POST /members/staffs  → Staff 등록
+    // POST /members/staffs
     //이 API는 무조건 100% StaffResponse 데이터만 반환
     @PostMapping("/staffs")
     public ResponseEntity<StaffResponse> createStaff(@RequestBody StaffCreateRequest request) {
@@ -54,7 +54,7 @@ public class MemberController {
         return ResponseEntity.status(HttpStatus.CREATED).body(StaffResponse.from(staff));
     }
 
-    // ===================== 조회 (GET) =====================
+    // 조회 (GET)
 
     // GET /members/{name}  → 이름으로 단일 멤버 조회
     @GetMapping("/{name}")
@@ -72,7 +72,7 @@ public class MemberController {
         }
     }
 
-    // ===================== 수정 (PUT) =====================
+    // 수정 (PUT)
 
     // PUT /members/lions/{name}  → Lion 수정
     @PutMapping("/lions/{name}")
@@ -98,7 +98,7 @@ public class MemberController {
         return ResponseEntity.ok(StaffResponse.from(staff));
     }
 
-    // ===================== 삭제 (DELETE) =====================
+    // 삭제 (DELETE)
 
     // DELETE /members/{name}  → 멤버 삭제
     @DeleteMapping("/{name}")
