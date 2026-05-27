@@ -1,0 +1,70 @@
+### 1. Lion(아기사자) 등록 — 201 Created
+POST http://localhost:8080/members/lions
+Content-Type: application/json
+
+{
+  "name": "young",
+  "major": "컴퓨터공학과",
+  "generation": 13,
+  "part": "백엔드",
+  "studentId": "20230002"
+}
+
+### 2. Staff(운영진) 등록 — 201 Created
+### 등록
+POST http://localhost:8080/members/staffs
+Content-Type: application/json
+
+{
+  "name": "minsu",
+  "major": "소프트웨어학과",
+  "generation": 13,
+  "part": "백엔드",
+  "position": "부대표"
+}
+
+### 3. 이름 중복 등록 — 409 Conflict (위 이영희를 또 등록)
+POST http://localhost:8080/members/lions
+Content-Type: application/json
+
+{
+  "name": "이영희",
+  "major": "컴퓨터공학과",
+  "generation": 13,
+  "part": "백엔드",
+  "studentId": "20230002"
+}
+
+### 4. 단일 멤버 조회 — 200 OK
+GET http://localhost:8080/members/minsu
+
+### 5. 없는 멤버 조회 — 404 Not Found
+GET http://localhost:8080/members/없는이름
+
+### 6. Lion 수정 — 200 OK
+PUT http://localhost:8080/members/lions/young
+Content-Type: application/json
+
+{
+  "major": "정보통신공학과",
+  "generation": 13,
+  "part": "프론트엔드",
+  "studentId": "20230001"
+}
+
+### 7. Staff 수정 — 200 OK
+PUT http://localhost:8080/members/staffs/박민수
+Content-Type: application/json
+
+{
+  "major": "정보통신공학과",
+  "generation": 13,
+  "part": "프론트엔드",
+  "position": "대표"
+}
+
+### 8. 멤버 삭제 — 204 No Content
+DELETE http://localhost:8080/members/young
+
+### 9. 없는 멤버 삭제 — 404 Not Found
+DELETE http://localhost:8080/members/없는이름
