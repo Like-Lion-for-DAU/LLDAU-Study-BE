@@ -1,0 +1,203 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<title>Likelion Member Manager</title>
+<link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+<header>
+  <h1>Likelion Member Manager</h1>
+  <p class="subtitle">멤버 관리 · 과제 관리 · 통신 실습</p>
+</header>
+
+<nav class="tabs">
+  <button class="tab-btn active" data-tab="member-tab">멤버 관리</button>
+  <button class="tab-btn" data-tab="assignment-tab">과제 관리</button>
+</nav>
+
+<main>
+  <!-- ================= 멤버 관리 탭 ================= -->
+  <section id="member-tab" class="tab-panel active">
+    <h2>멤버 등록</h2>
+    <form id="member-form" class="card">
+      <select id="member-role">
+        <option value="LION">LION (아기사자)</option>
+        <option value="STAFF">STAFF (운영진)</option>
+      </select>
+      <input type="text" id="member-name" placeholder="이름" required>
+      <input type="text" id="member-major" placeholder="전공" required>
+      <input type="number" id="member-generation" placeholder="기수" required>
+      <select id="member-part">
+        <option value="백엔드">백엔드</option>
+        <option value="프론트엔드">프론트엔드</option>
+        <option value="기획">기획</option>
+      </select>
+      <input type="text" id="member-extra" placeholder="학번 (LION)">
+      <button type="submit">등록</button>
+    </form>
+
+    <h2>멤버 목록</h2>
+    <div class="card">
+      <div class="filter-row">
+        <select id="part-filter">
+          <option value="">전체</option>
+          <option value="백엔드">백엔드</option>
+          <option value="프론트엔드">프론트엔드</option>
+          <option value="기획">기획</option>
+        </select>
+        <button id="filter-btn">조회</button>
+      </div>
+      <table id="member-table">
+        <thead>
+          <tr><th>ID</th><th>이름</th><th>전공</th><th>기수</th><th>파트</th><th>역할</th><th>관리</th></tr>
+        </thead>
+        <tbody></tbody>
+      </table>
+    </div>
+  </section>
+
+  <!-- ================= 과제 관리 탭 ================= -->
+  <section id="assignment-tab" class="tab-panel">
+    <h2>과제 등록</h2>
+    <form id="assignment-form" class="card">
+      <select id="assignment-member-select"></select>
+      <input type="text" id="assignment-title" placeholder="과제 제목" required>
+      <input type="text" id="assignment-description" placeholder="과제 설명" required>
+      <button type="submit">등록</button>
+    </form>
+
+    <h2>전체 과제 조회</h2>
+    <div class="card">
+      <button id="load-all-assignments">전체 조회</button>
+      <table id="assignment-table">
+        <thead>
+          <tr><th>ID</th><th>제목</th><th>설명</th><th>멤버</th><th>관리</th></tr>
+        </thead>
+        <tbody></tbody>
+      </table>
+    </div>
+
+    <h2>과제 제목 검색</h2>
+    <div class="card">
+      <div class="filter-row">
+        <input type="text" id="search-keyword" placeholder="검색어 입력">
+        <button id="search-btn">검색</button>
+      </div>
+      <table id="search-table">
+        <thead>
+          <tr><th>ID</th><th>제목</th><th>설명</th><th>멤버</th></tr>
+        </thead>
+        <tbody></tbody>
+      </table>
+    </div>
+
+    <h2>과제 수정 / 삭제</h2>
+    <div class="card two-col">
+      <div>
+        <h3>수정</h3>
+        <input type="text" id="update-id" placeholder="과제 ID">
+        <input type="text" id="update-title" placeholder="새 제목">
+        <input type="text" id="update-description" placeholder="새 설명">
+        <button id="update-btn">불러오기 / 저장</button>
+      </div>
+      <div>
+        <h3>삭제</h3>
+        <input type="text" id="delete-id" placeholder="과제 ID">
+        <button id="delete-btn">삭제</button>
+      </div>
+    </div>
+  </section>
+</main>
+
+<!-- 토스트 알림 -->
+<div id="toast" class="toast"></div>
+
+<!-- HTTP 통신 로그 패널 -->
+<div class="log-panel">
+  <div class="log-header">
+    <span>HTTP 통신 로그</span>
+    <button id="clear-log">Clear</button>
+  </div>
+  <div id="log-body" class="log-body"></div>
+</div>
+
+<script src="js/member.js"></script>
+<script src="js/assignment.js"></script>
+<script>
+  // 탭 전환
+  document.querySelectorAll('.tab-btn').forEach(btn => {
+    btn.addEventListener('click', () => {
+      document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
+      document.querySelectorAll('.tab-panel').forEach(p => p.classList.remove('active'));
+      btn.classList.add('active');
+      document.getElementById(btn.dataset.tab).classList.add('active');
+    });
+  });
+
+  // 공통 토스트
+  function showToast(message, isError) {
+    const toast = document.getElementById('toast');
+    toast.textContent = message;
+    toast.className = 'toast show ' + (isError ? 'error' : 'success');
+    setTimeout(() => toast.classList.remove('show'), 2500);
+  }
+
+  // 공통 로그 패널 기록
+  function logHttp(method, url, requestBody, status, responseBody) {
+    const logBody = document.getElementById('log-body');
+    const time = new Date().toLocaleTimeString();
+    const statusClass = status >= 200 && status < 300 ? 'ok' : 'err';
+    const entry = document.createElement('div');
+    entry.className = 'log-entry';
+    entry.innerHTML =
+      `<div class="log-line"><span class="log-time">${time}</span> ` +
+      `<span class="log-method">${method}</span> ` +
+      `<span class="log-url">${url}</span> ` +
+      `<span class="log-status ${statusClass}">${status}</span></div>` +
+      (requestBody ? `<div class="log-detail">Request: ${requestBody}</div>` : '') +
+      (responseBody ? `<div class="log-detail">Response: ${responseBody}</div>` : '');
+    logBody.prepend(entry);
+  }
+
+  document.getElementById('clear-log').addEventListener('click', () => {
+    document.getElementById('log-body').innerHTML = '';
+  });
+
+  // 모든 API 호출을 감싸는 공통 fetch 래퍼
+  async function httpFetch(method, url, body) {
+    const options = { method, headers: { 'Content-Type': 'application/json' } };
+    if (body !== undefined) options.body = JSON.stringify(body);
+
+    try {
+      const response = await fetch(url, options);
+      let responseJson = null;
+      const text = await response.text();
+      if (text) {
+        try { responseJson = JSON.parse(text); } catch (e) { responseJson = text; }
+      }
+
+      logHttp(method, url, body ? JSON.stringify(body) : null,
+              response.status, responseJson ? JSON.stringify(responseJson) : null);
+
+      if (!response.ok) {
+        const message = (responseJson && responseJson.message) ? responseJson.message : '요청 처리 중 오류가 발생했습니다.';
+        showToast(message, true);
+        return { ok: false, status: response.status, data: responseJson };
+      }
+      return { ok: true, status: response.status, data: responseJson };
+    } catch (err) {
+      logHttp(method, url, body ? JSON.stringify(body) : null, 0, null);
+      showToast('서버에 연결할 수 없습니다.', true);
+      return { ok: false, status: 0, data: null };
+    }
+  }
+
+  // 페이지 로드시 초기 데이터 로드
+  window.addEventListener('DOMContentLoaded', () => {
+    loadMembers('');
+    loadMemberOptions();
+  });
+</script>
+</body>
+</html>
